@@ -51,7 +51,13 @@ public class Case {
         this.pion = pion;
     }
 
+    // Méthodes
+    public boolean estVide() {
+        /* Permet de déterminer si une case est vide. */
+        return this.pion == null;
+    }
 
+    // 
 
 
 }

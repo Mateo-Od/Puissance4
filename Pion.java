@@ -20,5 +20,13 @@ public class Pion {
     public void setColor(Couleur col) {
         this.color = col;
     }
+
+    public boolean estJaune() {
+        return  this.color == Couleur.JAUNE;
+    }
+
+    public boolean estRouge() {
+        return  this.color == Couleur.ROUGE;
+    }
     
 }
