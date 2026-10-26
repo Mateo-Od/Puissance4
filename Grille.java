@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Grille {
 
     // Attribut
@@ -97,32 +99,70 @@ public class Grille {
                 }
 
                 if (i + 3 < nbLignes &&
-                !grille[i+1][j].estVide() && grille[i+1][j].getPion().getColor() == color &&
-                !grille[i+2][j].estVide() && grille[i+2][j].getPion().getColor() == color &&
-                !grille[i+3][j].estVide() && grille[i+3][j].getPion().getColor() == color) {
-                return true;
-            }
+                    !grille[i+1][j].estVide() && grille[i+1][j].getPion().getColor() == color &&
+                    !grille[i+2][j].estVide() && grille[i+2][j].getPion().getColor() == color &&
+                    !grille[i+3][j].estVide() && grille[i+3][j].getPion().getColor() == color) {
+                    return true;
+                }
 
-            // 3. Vérification DIAGONALE DESCENTE (vers le bas-droite)
-            if (i + 3 < nbLignes && j + 3 < nbColonnes &&
-                !grille[i+1][j+1].estVide() && grille[i+1][j+1].getPion().getColor() == color &&
-                !grille[i+2][j+2].estVide() && grille[i+2][j+2].getPion().getColor() == color &&
-                !grille[i+3][j+3].estVide() && grille[i+3][j+3].getPion().getColor() == color) {
-                return true;
-            }
+                // 3. Vérification DIAGONALE DESCENTE (vers le bas-droite)
+                if (i + 3 < nbLignes && j + 3 < nbColonnes &&
+                    !grille[i+1][j+1].estVide() && grille[i+1][j+1].getPion().getColor() == color &&
+                    !grille[i+2][j+2].estVide() && grille[i+2][j+2].getPion().getColor() == color &&
+                    !grille[i+3][j+3].estVide() && grille[i+3][j+3].getPion().getColor() == color) {
+                    return true;
+                }
 
-            // 4. Vérification DIAGONALE MONTANTE (vers le haut-droite)
-            if (i - 3 >= 0 && j + 3 < nbColonnes &&
-                !grille[i-1][j+1].estVide() && grille[i-1][j+1].getPion().getColor() == color &&
-                !grille[i-2][j+2].estVide() && grille[i-2][j+2].getPion().getColor() == color &&
-                !grille[i-3][j+3].estVide() && grille[i-3][j+3].getPion().getColor() == color) {
-                return true;
-            }
-
+                // 4. Vérification DIAGONALE MONTANTE (vers le haut-droite)
+                if (i - 3 >= 0 && j + 3 < nbColonnes &&
+                    !grille[i-1][j+1].estVide() && grille[i-1][j+1].getPion().getColor() == color &&
+                    !grille[i-2][j+2].estVide() && grille[i-2][j+2].getPion().getColor() == color &&
+                    !grille[i-3][j+3].estVide() && grille[i-3][j+3].getPion().getColor() == color) {
+                    return true;
+                }
             }
         }
         return false;
     }  
+
+    public boolean grillePleine() {
+        /*Renvoie true si la grille est pleine 
+        et false sinon */
+        for (int i = 0; i < grille.length; i++) {
+            for (int j = 0; j < grille[i].length; j++) {
+                if (grille[i][j].estVide()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean matchNul() {
+        /*Renvoie true si personne n'a gagné et si la grille est pleine */
+        return !aGagne(Pion.Couleur.JAUNE) && !aGagne(Pion.Couleur.ROUGE) && grillePleine();
+    }
+
+    public void remplirAléatoire() {
+        /*Rempli de façon aléatoire la grille de jeu */
+        Random random = new Random();
+        boolean rempli = false;
+        int y = 0;
+        int val = 0;
+        while (!rempli) { // On joue tant que ce la grille n'est pas pleine
+            y = random.nextInt(grille[0].length); // entre 0 et grille.length
+            val = random.nextInt(2); // 0 ou 1
+            if (val == 0) { // Pion rouge
+                placerPion(new Pion(Pion.Couleur.ROUGE), y);
+            } else {
+                placerPion(new Pion(Pion.Couleur.JAUNE), y);
+            }
+            // Si grille pleine
+            if (this.grillePleine()) {
+                rempli = true;
+            }
+        }
+    }
 
 
     @Override
