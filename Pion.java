@@ -4,7 +4,7 @@ public class Pion {
         JAUNE,ROUGE
     }
 
-    // Attributs
+    // Attribut
     private Couleur color;
 
     // Constructeur

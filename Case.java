@@ -1,7 +1,7 @@
 public class Case {
 
     // Attributs
-    // Coordonnées (x,y) d'une case dans le tableau
+    // Coordonnées (x;y) d'une case dans le tableau
     private int x;
     private int y;
     private Pion pion;

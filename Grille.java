@@ -18,7 +18,7 @@ public class Grille {
     // Méthodes
 
     public void placerPion(Pion p, int y) {
-        /* Permte de placer un pion dans notre grille
+        /* Permet de placer un pion dans notre grille
         A condition de :
         1) Que la position en y soit valide
         2) Que la grille ne déborde pas */
@@ -26,11 +26,8 @@ public class Grille {
         if (x != -1) {
             // On place notre pion
             this.grille[x][y].setPion(p);
-            System.out.println("Pion placé");
-        } else {
-            System.out.println("Erreur :");
-        }
-
+            // System.out.println("Pion placé");
+        } 
     } 
 
     public int derniereLigneVide(int y) {
@@ -181,7 +178,7 @@ public class Grille {
         String ANSI_RESET = "\u001B[0m";  // Remet la couleur par défaut
 
         // Numéro de lignes
-        int numColonnes = 1;
+        int numColonnes = 0;
         sb.append("    ");
         for (int i = 0; i < nbColonnes; i++) {
             sb.append(numColonnes).append("   ");
@@ -207,11 +204,10 @@ public class Grille {
                 if (grille[l][i].estVide()) { // Case vide
                     sb.append("|   ");
                 } else if (grille[l][i].getPion().estJaune()) {
-                    sb.append("| ").append(ANSI_JAUNE).append("J").append(ANSI_RESET).append(" ");
+                    sb.append("| ").append(ANSI_JAUNE).append("O").append(ANSI_RESET).append(" ");
                 } else {
-                    sb.append("| ").append(ANSI_ROUGE).append("R").append(ANSI_RESET).append(" ");
+                    sb.append("| ").append(ANSI_ROUGE).append("O").append(ANSI_RESET).append(" ");
                 }
-                
             }
             lettreLigne++;
             sb.append("|").append("\n");
@@ -222,7 +218,14 @@ public class Grille {
         for (int i = 0; i < nbColonnes; i++) {
             sb.append("+---");
         }
-        sb.append("+");
+        sb.append("+\n");
+
+        int numeroColonnes2 = 0;
+        sb.append("    ");
+        for (int i = 0; i < nbColonnes; i++) {
+            sb.append(numeroColonnes2).append("   ");
+            numeroColonnes2++;
+        }
 
         return sb.toString(); 
         

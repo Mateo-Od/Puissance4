@@ -19,6 +19,7 @@ public class Test {
         grille.remplirAléatoire();
         System.out.println(grille);
         System.out.println(grille.aGagne(Pion.Couleur.JAUNE));
+        System.out.println(grille.matchNul());
 
         // Test
         // StringBuilder sb = new StringBuilder();
